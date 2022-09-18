@@ -1,15 +1,20 @@
 package main
 
 import (
-	//"github.com/GabrielAchumba/CodeChallenges/codechallenge1"
-	"github.com/GabrielAchumba/CodeChallenges/codechallenge2"
+	"github.com/GabrielAchumba/CodeChallenges/codechallenge1"
+	//"github.com/GabrielAchumba/CodeChallenges/codechallenge2"
 )
 
 func main() {
-	//advanceforloop.Lesson1_Example1()
-	//advanceforloop.Lesson1_Example2()
-	//advanceforloop.Lesson1_Example3()
 
-	//codechallenge1.Main()
-	codechallenge2.Main()
+	terminalsFilePath := "./codechallenge1/files/terminals.json"
+	transFareRateFilePath := "./codechallenge1/files/transfer_rates.json"
+	startBusStop := 0
+	stopBusStop := 3
+
+	estimatedResult, _, _ := codechallenge1.Run(terminalsFilePath,
+		transFareRateFilePath, startBusStop, stopBusStop)
+	println("estimatedResult: ", estimatedResult)
+
+	//codechallenge2.Main()
 }

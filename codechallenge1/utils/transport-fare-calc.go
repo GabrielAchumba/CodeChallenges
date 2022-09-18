@@ -10,7 +10,7 @@ import (
 
 type ITransportFareCalc interface {
 	distanceBetweenBustStops(from models.OriginToBusStop, to models.OriginToBusStop) float64
-	TransportFare(from models.OriginToBusStop, to models.OriginToBusStop) (string, error)
+	TransportFare(from models.OriginToBusStop, to models.OriginToBusStop) (string, float64, error)
 }
 
 type TransportFareCalc struct {
@@ -29,13 +29,13 @@ func (impl TransportFareCalc) distanceBetweenBustStops(from models.OriginToBusSt
 }
 
 func (impl TransportFareCalc) TransportFare(from models.OriginToBusStop, to models.OriginToBusStop,
-) (string, error) {
+) (string, float64, error) {
 
 	distance := impl.distanceBetweenBustStops(from, to)
 	var cumulativeCost float64 = 0
 
 	if impl.transportFareRates[0].From > 0 {
-		return "", errors.Error("The start distance must be zero")
+		return "", 0, errors.Error("The start distance must be zero")
 	}
 	for _, item := range impl.transportFareRates {
 
@@ -50,5 +50,5 @@ func (impl TransportFareCalc) TransportFare(from models.OriginToBusStop, to mode
 
 	result := from.Bus_stop + " > " + to.Bus_stop + " = Rs" + fmt.Sprintf("%f", cumulativeCost)
 
-	return result, nil
+	return result, cumulativeCost, nil
 }

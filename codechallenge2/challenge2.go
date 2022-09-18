@@ -1,17 +1,17 @@
 package codechallenge2
 
 import (
-	"fmt"
-
+	"github.com/GabrielAchumba/CodeChallenges/codechallenge2/models"
 	"github.com/GabrielAchumba/CodeChallenges/codechallenge2/utils"
 )
 
-func Main() {
+func Run() models.Player {
 
 	numberOfPlayers := 4
 	cardUtil := utils.NewCardUtil()
 	playerUtil := utils.NewPlayerUtil(cardUtil)
 	players := playerUtil.CreatePlayers(numberOfPlayers)
 	winner := playerUtil.GetAWinner(players)
-	fmt.Println(winner)
+
+	return winner
 }

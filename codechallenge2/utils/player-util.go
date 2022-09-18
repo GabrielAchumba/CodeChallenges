@@ -176,5 +176,7 @@ func (impl PlayerUtil) GetAWinner(players []models.Player) models.Player {
 		return winners[0]
 	}
 
-	return models.Player{}
+	return models.Player{
+		PlayerName: "No Winner",
+	}
 }
